@@ -1,25 +1,77 @@
 // app.js
+
 const express = require('express');
-const bodyParser = require('body-parser');
-// const sequelize = require('./database'); // Configure your Sequelize instance
-const Profile = require('./profile'); // Import your model
+const { Sequelize, DataTypes } = require('sequelize');
 
 const app = express();
 
-app.use(bodyParser.json());
+// parse application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 
-app.post('/api/profiles', async (req, res) => {
+// parse application/json
+app.use(express.json());
+// Create a Sequelize instance with SQLite as the dialect
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: 'mydatabase.sqlite', // SQLite database file name
+});
+
+// Define a model (e.g., User)
+const User = sequelize.define('User', {
+  userName: DataTypes.STRING,
+  bio:DataTypes.STRING,
+  locationOfUser:DataTypes.STRING,
+  connectionCount:DataTypes.STRING,
+  followers:DataTypes.STRING,
+});
+
+// Sync the database to create tables
+sequelize.sync({ force: true }).then(() => {
+  console.log('Database and tables created!');
+});
+
+
+// Define a route to create a user
+app.post('/users', async (req, res) => {
+  
+  console.log("someone made a post req");
   try {
-    // Handle incoming data and save it to the database (req.body)
-    const profile = await Profile.create(req.body);
-    res.status(201).json(profile);
+    // Extract user data from the request body
+    const data = req.body;
+   
+    // Create a new user using Sequelize's create method
+    const newUser = await User.create({
+      name:data.name,
+      bio,
+      location,
+      connectionCount,
+      followers,
+    });
+    console.log(req.body);
+    // Respond with the newly created user as JSON
+    res.status(201).json(newUser);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Something went wrong!' });
   }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
+
+// Define a route to get all users
+app.get('/allusers', async (req, res) => {
+  try {
+    const users = await User.findAll(); // Query all users from the database
+    res.json(users); // Send users as JSON response
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+  
+app.listen(3000, () => {
+  
+  console.log('Server is running on port 3000');
 });
