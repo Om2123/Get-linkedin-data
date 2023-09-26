@@ -42,10 +42,10 @@ app.post('/users', async (req, res) => {
     // Create a new user using Sequelize's create method
     const newUser = await User.create({
       name:data.name,
-      bio,
-      location,
-      connectionCount,
-      followers,
+      bio:data.bio,
+      locationOfUser:data.location,
+      connectionCount:data.connectionCount,
+      followers:data.followers,
     });
     console.log(req.body);
     // Respond with the newly created user as JSON

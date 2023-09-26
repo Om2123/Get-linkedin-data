@@ -1,9 +1,11 @@
 // import { getUserData } from "./content";
+
+// making a post request to your backend server.
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "dataFromUsers") {
     // Save the user data to your backend server.
     const userData = message.data;
-
+    console.log(userData);
 
     const requestOptions = {
       method: "POST",
@@ -37,7 +39,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 document.addEventListener("DOMContentLoaded", () => {
   // Get the button that opens the modal
   const btn = document.getElementById("scrapeButton");
-  const saveDataBtn = document.getElementById("saveData");
   // Get the next LinkedIn profile link from the array.
   const linkedInProfileLinks = [
     "https://www.linkedin.com/in/rajesh-kr-mehra/",
