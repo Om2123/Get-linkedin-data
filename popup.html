@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tag Logger</title>
+  <title>Linkedin Profile Data saver</title>
+  <!-- Add Tailwind CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<style>
-  #id{
-    padding: 4px;
-    margin: 3px;
-    background-color: rgb(121, 156, 156);
-    font-size: larger;
-  }
-</style>
-<body>
-  <h1>Linkdin profiles</h1>
-  <ul id="tagList"></ul>
-  <button id="scrapeButton">Next profile</button>
+<body class="p-3">
+  <h1 class="text-3xl font-bold text-blue-600">LinkedIn Data</h1>
+  <ul id="tagList" class="mt-4"></ul>
+  <button id="scrapeButton" class="bg-green-500 text-white py-2 px-4 rounded-lg mt-4">Next Profile</button>
   <script src="index.js"></script>
 </body>
 </html>

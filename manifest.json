@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Tab Title Extension",
+  "name": "Get linkedin Profile Data",
   "version": "1.0",
-  "description": "A Chrome extension to display the title of the current tab.",
+  "description": "A Chrome extension to get the data and store it using sqlite ",
   "permissions": ["activeTab",
    "scripting" ,
    "https://www.linkedin.com/in/rajesh-kr-mehra/" , 
