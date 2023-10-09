@@ -1,12 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Get linkedin Profile Data",
+  "name": "LinkedIn Extension",
   "version": "1.0",
   "description": "A Chrome extension to get the data and store it using sqlite ",
   "permissions": ["activeTab",
-   "scripting" ,
-   "https://www.linkedin.com/in/rajesh-kr-mehra/" , 
-   "https://www.linkedin.com/*"] ,
+   "scripting" ] ,
   "action": {
     "default_popup": "popup.html"
   },

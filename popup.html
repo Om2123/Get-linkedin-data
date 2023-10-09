@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Linkedin Profile Data saver</title>
+  <title>Linkedin Extention</title>
   <!-- Add Tailwind CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="p-3">
-  <h1 class="text-3xl font-bold text-blue-600">LinkedIn Data</h1>
-  <ul id="tagList" class="mt-4"></ul>
-  <button id="scrapeButton" class="bg-green-500 text-white py-2 px-4 rounded-lg mt-4">Next Profile</button>
+  <h1 class="text-3xl font-bold text-blue-600">LinkedIn Extention</h1>
+  <input type="number" class="p-2 m-1 bg-slate-800" name="like count" id="likeCount" placeholder="Like count">
+  <input type="number" class="p-2 m-1 bg-slate-800" name="Comment count" id="CommentCount" placeholder="Comment count">
+  <button id="scrapeButton"  disabled class="bg-green-500 hover:bg-green-800 text-white py-2 px-4 rounded-lg mt-4">Go to feed</button>
   <script src="index.js"></script>
 </body>
 </html>
