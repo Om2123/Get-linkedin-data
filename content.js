@@ -20,21 +20,30 @@
 // );
 // // let url = connectionCount.baseUrl;
 
-// setTimeout(() => {
-// // sending data to index.js
-// function sendDataToIndex(data) {
-//   chrome.runtime.sendMessage({
-//     type: "dataFromUsers",
-//     data: data,
-//   });
-// }
-// const userData = {
-//   name: userName?.textContent || "",
-//   followers: followersCount || "not found",
-//   bio: bio?.textContent || "",
-//   location: locationOfUser?.textContent || "",
-//   connectionCount: connectionCount || "not found",
-// };
+window.addEventListener("load", function () {
+  window.scrollBy({
+    top: 3800,
+    behavior: "smooth",
+  });
+  const ci = document.querySelectorAll(".relative.editor-container");
 
-//   sendDataToIndex(userData);
-// }, 4000);
+  setTimeout(() => {
+    const i = document.querySelectorAll("div.ql-editor.ql-blank");
+    let likeBtns = document.querySelectorAll(
+      "button.artdeco-button.artdeco-button--muted.artdeco-button--4.ember-view.social-actions-button.react-button__trigger.artdeco-button--tertiary "
+    );
+    likeBtns.forEach((btn) => {
+      btn.scrollIntoView({ behavior: "smooth" });
+      btn.parentNode.style.backgroundColor = "grey"
+      btn.parentNode.style.padding = "40px"
+      // btn.click();
+    });
+    i.forEach((btn) => {
+      btn.focus();
+      btn.backgroundColor="black";
+      btn.padding="40px";
+      btn.innerText = "👍🏻";
+    });
+    console.log(i);
+  }, 4000);
+});
