@@ -4,8 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const likeCountInput = document.getElementById("likeCount");
   const commentCountInput = document.getElementById("CommentCount");
   const btn = document.getElementById("scrapeButton");
-
-  // Add an event listener to both input fields to check for changes
+   // Add an event listener to both input fields to check for changes
   likeCountInput.addEventListener("input", toggleButtonState);
   commentCountInput.addEventListener("input", toggleButtonState);
 
@@ -22,12 +21,19 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.disabled = false;
     }
   }
-  // Initially, disable the button since both input fields are empty
   toggleButtonState();
 
   btn.addEventListener("click", function () {
+    // update the url to linkedin feed
     chrome.tabs.update({
       url: "https://www.linkedin.com/feed/",
     });
+    setInterval(() => {
+      // Send a message to content.js
+      chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, { type: 'sendData', data: { "like":likeCountInput.value,"comment": commentCountInput.value } });
+    });
+    },1000)
   });
+   
 });
